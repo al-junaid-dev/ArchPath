@@ -226,7 +226,7 @@ export default function GeneratorPage() {
                   <span>Your Architectural Path</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 capitalize"><p className=" text-sm">f o r</p>
+                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 capitalize"><p className=" text-sm">f r o m</p>
                   {profile?.field_of_study}
                 </h2>
               </div>
