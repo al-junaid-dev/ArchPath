@@ -1,65 +1,90 @@
-import Image from "next/image";
+import Link from 'next/link';
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
+import { Button } from '@/components/ui/button';
+import { Sparkles, Map, Bot, ArrowRight, Zap } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col min-h-screen bg-transparent">
+      {/* 1. Global Navigation */}
+      <NavBar />
+
+      <main className="flex-grow">
+        
+        {/* Hero Section */}
+        <section className="relative px-4 py-24 md:py-32 max-w-6xl mx-auto flex flex-col items-center text-center space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          
+          {/* AI Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50/80 border border-indigo-100 text-indigo-600 text-sm font-semibold backdrop-blur-sm shadow-sm">
+            <Sparkles className="w-4 h-4" />
+            <span>Powered by Llama 3.1 & Groq</span>
+          </div>
+          
+          {/* Main Headline */}
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-zinc-900 max-w-4xl">
+            Architect your future with <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">AI precision.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-zinc-500 max-w-2xl leading-relaxed">
+            Stop guessing. Generate personalized, real-time career roadmaps based on your major, interests, and current industry demands in milliseconds.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
+            <Link href="/generator">
+              <Button size="lg" className="bg-black text-white hover:bg-zinc-800 rounded-full px-8 h-12 text-base shadow-lg shadow-zinc-200">
+                Start Your Journey <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="px-4 py-24 bg-white/40 border-t border-zinc-200/50 backdrop-blur-md">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            {/* Feature 1 */}
+            <div className="bg-white p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+              <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 mb-6">
+                <Map className="w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-bold text-zinc-900 mb-3">Dynamic Roadmaps</h3>
+              <p className="text-zinc-500 leading-relaxed">
+                Instantly generate step-by-step master plans tailored exactly to your field of study and current academic level.
+              </p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="bg-white p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+              <div className="w-14 h-14 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 mb-6">
+                <Bot className="w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-bold text-zinc-900 mb-3">Context-Aware Mentor</h3>
+              <p className="text-zinc-500 leading-relaxed">
+                Chat directly with your career architect. It knows your generated roadmap and can provide specific free resources and links.
+              </p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="bg-white p-8 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+              <div className="w-14 h-14 bg-zinc-100 rounded-2xl flex items-center justify-center text-zinc-900 mb-6">
+                <Zap className="w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-bold text-zinc-900 mb-3">Blazing Fast Engine</h3>
+              <p className="text-zinc-500 leading-relaxed">
+                Powered by the Groq LPU engine, generating complex JSON career structures and context-aware responses in literal milliseconds.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
       </main>
+
+      {/* 3. Global Footer */}
+      <Footer />
     </div>
   );
 }
