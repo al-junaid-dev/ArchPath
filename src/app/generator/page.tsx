@@ -228,6 +228,7 @@ export default function GeneratorPage() {
                 
                 <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 capitalize"><p className=" text-sm">f r o m</p>
                   {profile?.field_of_study}
+<p className="text-sm">t o</p>
                 </h2>
               </div>
 
