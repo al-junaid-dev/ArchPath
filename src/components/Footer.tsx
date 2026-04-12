@@ -13,7 +13,7 @@ export default function Footer() {
               <div className="bg-black text-white p-1.5 rounded-md">
                 <Compass className="h-5 w-5" />
               </div>
-              <span className="font-bold text-lg tracking-tight text-zinc-900">PathFinder</span>
+              <span className="font-bold text-lg tracking-tight text-zinc-900">ArchPath</span>
             </Link>
             <p className="text-zinc-500 text-sm max-w-sm">
               Empowering students with AI-driven career roadmaps. Open-source, fast, and built for the future.
@@ -62,7 +62,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-zinc-100 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-zinc-400">
-          <p>© {new Date().getFullYear()} PathFinder AI. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ArchPath AI. All rights reserved.</p>
           <p className="mt-4 md:mt-0">Built with Next.js, Supabase & Groq.</p>
         </div>
       </div>
