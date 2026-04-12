@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/dashboard', '/generator', '/admin'], // Keep private routes hidden
     },
-    sitemap: 'https://pathfinder-ai.vercel.app/sitemap.xml',
+    sitemap: 'https://archpath.vercel.app/sitemap.xml',
   };
 }
