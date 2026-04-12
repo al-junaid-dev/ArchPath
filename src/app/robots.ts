@@ -5,7 +5,13 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/dashboard', '/generator', '/admin'], // Keep private routes hidden
+      disallow: [
+        '/dashboard', 
+        '/generator', 
+        '/admin',
+        '/api/',   // Protect API routes from crawlers
+        '/auth/'   // Protect Supabase auth callbacks
+      ],
     },
     sitemap: 'https://archpath.vercel.app/sitemap.xml',
   };
