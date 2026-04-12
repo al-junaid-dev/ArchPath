@@ -28,7 +28,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-lg border-zinc-200">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-3xl font-bold tracking-tight text-zinc-900">
-            PathFinder AI
+            ArchPath AI
           </CardTitle>
           <CardDescription className="text-zinc-500">
             Sign in to generate your personalized career roadmap.
