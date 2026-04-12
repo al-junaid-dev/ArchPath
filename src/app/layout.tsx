@@ -22,30 +22,30 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "PathFinder AI | Architect Your Future",
-    template: "%s | PathFinder AI" // Automatically appends your brand to sub-pages
+    default: "ArchPath AI | Architect Your Future",
+    template: "%s | ArchPath AI" // Automatically appends your brand to sub-pages
   },
   description: "Generate personalized, real-time career roadmaps using Llama 3.1 & Groq. Stop guessing and let AI architect your future.",
   keywords: ["Career Roadmap", "AI Career Coach", "Student Guidance", "Tech Careers", "PathFinder AI"],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://pathfinder-al.vercel.app/",
-    siteName: "PathFinder AI",
-    title: "PathFinder AI | Architect Your Future",
+    url: "https://archpath.vercel.app/",
+    siteName: "ArchPath AI",
+    title: "ArchPath AI | Architect Your Future",
     description: "Generate personalized, real-time career roadmaps in milliseconds.",
     images: [
       {
-        url: "https://pathfinder-al.vercel.app/pathfinder.svg",
+        url: "https://archpath.vercel.app/logo.svg",
         width: 1200,
         height: 630,
-        alt: "PathFinder AI Dashboard Preview"
+        alt: "ArchPath AI Dashboard Preview"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "PathFinder AI",
+    title: "ArchPath AI",
     description: "AI-driven career roadmaps for students.",
   }
 };
