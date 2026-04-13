@@ -1,91 +1,102 @@
 import Link from 'next/link';
-import { Compass, Code, Database, Palette, Briefcase, Zap } from 'lucide-react';
+import { Sparkles, ShieldCheck, Terminal, LayoutTemplate, Zap } from 'lucide-react';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 
-// Professional category mapping for SEO hierarchy
+// SEO Categorization - Grouping related entities together for the crawler
 const categories = [
   {
-    title: "Software & Development",
-    icon: <Code className="w-5 h-5" />,
+    title: "Artificial Intelligence & Data",
+    icon: <Sparkles className="w-5 h-5" />,
     links: [
-      { name: "Software Engineer", slug: "software-engineer" },
-      { name: "Full Stack Developer", slug: "full-stack-developer" },
-      { name: "Mobile App Developer", slug: "mobile-app-developer" },
-      { name: "Cloud Architect", slug: "cloud-architect" },
-    ]
-  },
-  {
-    title: "Data & Artificial Intelligence",
-    icon: <Database className="w-5 h-5" />,
-    links: [
-      { name: "Data Scientist", slug: "data-scientist" },
       { name: "AI Prompt Engineer", slug: "ai-prompt-engineer" },
-      { name: "Machine Learning Engineer", slug: "machine-learning-engineer" },
-      { name: "Data Analyst", slug: "data-analyst" },
+      { name: "Generative AI Developer", slug: "generative-ai-developer" },
+      { name: "MLOps Engineer", slug: "mlops-engineer" },
+      { name: "NLP Engineer", slug: "nlp-engineer" },
+      { name: "AI Ethics Researcher", slug: "ai-ethics-researcher" },
+      { name: "Data Visualization Specialist", slug: "data-visualization-specialist" },
     ]
   },
   {
-    title: "Design & Creative",
-    icon: <Palette className="w-5 h-5" />,
+    title: "Cybersecurity & Cloud",
+    icon: <ShieldCheck className="w-5 h-5" />,
     links: [
-      { name: "UI/UX Designer", slug: "ui-ux-designer" },
-      { name: "Product Designer", slug: "product-designer" },
-      { name: "Graphic Designer", slug: "graphic-designer" },
+      { name: "Cloud Security Architect", slug: "cloud-security-architect" },
+      { name: "Penetration Tester", slug: "penetration-tester" },
+      { name: "DevSecOps Engineer", slug: "devsecops-engineer" },
+      { name: "Smart Contract Auditor", slug: "blockchain-smart-contract-auditor" },
     ]
   },
   {
-    title: "Business & Strategy",
-    icon: <Briefcase className="w-5 h-5" />,
+    title: "Specialized Development",
+    icon: <Terminal className="w-5 h-5" />,
     links: [
-      { name: "Product Manager", slug: "product-manager" },
-      { name: "Digital Marketer", slug: "digital-marketer" },
-      { name: "Business Analyst", slug: "business-analyst" },
+      { name: "AR/VR Experience Developer", slug: "ar-vr-experience-developer" },
+      { name: "IoT Solutions Architect", slug: "iot-solutions-architect" },
+      { name: "Rust Systems Programmer", slug: "rust-systems-programmer" },
+      { name: "FinTech Integration Developer", slug: "fintech-integration-developer" },
+    ]
+  },
+  {
+    title: "Next-Gen Design & Product",
+    icon: <LayoutTemplate className="w-5 h-5" />,
+    links: [
+      { name: "Conversation Designer", slug: "conversation-designer" },
+      { name: "Growth Product Manager", slug: "growth-product-manager" },
+      { name: "UX Researcher", slug: "ux-researcher" },
+      { name: "API Technical Writer", slug: "technical-writer-api" },
+      { name: "Developer Advocate (DevRel)", slug: "developer-advocate" },
+      { name: "Agile Scrum Master", slug: "scrum-master-agile-coach" },
     ]
   }
 ];
 
+export const metadata = {
+  title: 'Career Directory | High-Demand Tech Roles in 2026',
+  description: 'Explore our comprehensive directory of next-generation career roadmaps, including AI, Cybersecurity, Specialized Dev, and Product Strategy.',
+};
+
 export default function CareerDirectory() {
   return (
-    <div className="flex flex-col min-h-screen bg-transparent">
+    <div className="flex flex-col min-h-screen bg-zinc-50/50">
       <NavBar />
       
-      <main className="flex-grow p-8 md:p-16">
-        <div className="max-w-6xl mx-auto">
-          {/* SEO Optimized Header */}
-          <div className="mb-16 text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-zinc-900 mb-4 tracking-tight">
-              Career <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Roadmap Directory</span>
+      <main className="flex-grow px-4 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          {/* SEO Optimized H1 Header */}
+          <header className="mb-16 text-center lg:text-left max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-zinc-900 mb-6 tracking-tight">
+              ArchPath <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500">Career Directory</span>
             </h1>
-            <p className="text-zinc-500 text-lg max-w-2xl leading-relaxed">
-              Explore our curated AI-architected career paths. Find the step-by-step masterplan for the most in-demand roles in 2026.
+            <p className="text-zinc-600 text-lg leading-relaxed">
+              Stop guessing your future. Select a high-demand domain below and let our AI architect a step-by-step masterplan for your specific educational background.
             </p>
-          </div>
+          </header>
 
-          {/* Directory Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Semantic Nav Grid */}
+          <nav aria-label="Career Categories" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {categories.map((cat, i) => (
-              <div key={i} className="space-y-6">
-                <div className="flex items-center gap-2 text-zinc-900 font-bold text-lg border-b border-zinc-100 pb-2">
-                  <div className="text-indigo-600">{cat.icon}</div>
+              <section key={i} className="space-y-6">
+                <h2 className="flex items-center gap-3 text-zinc-900 font-bold text-lg border-b border-zinc-200 pb-3">
+                  <div className="text-indigo-600 bg-indigo-50 p-2 rounded-lg">{cat.icon}</div>
                   {cat.title}
-                </div>
-                <ul className="flex flex-col gap-3">
+                </h2>
+                <ul className="flex flex-col gap-4">
                   {cat.links.map((link, j) => (
                     <li key={j}>
                       <Link 
                         href={`/careers/${link.slug}`}
-                        className="text-zinc-500 hover:text-indigo-600 transition-colors text-sm font-medium flex items-center group"
+                        className="text-zinc-600 hover:text-indigo-600 hover:bg-indigo-50/50 px-3 py-2 -mx-3 rounded-lg transition-all text-sm font-medium flex items-center group"
                       >
-                        <Zap className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Zap className="w-3 h-3 mr-2 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                         {link.name}
                       </Link>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
             ))}
-          </div>
+          </nav>
         </div>
       </main>
 
