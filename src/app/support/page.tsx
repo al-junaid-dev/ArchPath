@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Heart, QrCode, Server, Sparkles, Smartphone } from 'lucide-react';
 
 export default function SupportPage() {
-  // 1. YOUR UPI DETAILS
-  const upiId = "YOUR_UPI_ID_HERE@bank"; // e.g., 9876543210@paytm
+  // 1. UPI DETAILS
+  const upiId = "9398357622@axl"; 
   const payeeName = "ArchPath AI"; 
   
   // 2. THE UPI DEEP LINK PROTOCOL
