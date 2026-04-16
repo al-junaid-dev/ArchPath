@@ -71,10 +71,10 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-zinc-900 text-sm uppercase tracking-wider mb-4">Popular Roadmaps</h3>
             <ul className="space-y-3 text-sm text-zinc-500">
-              <li><Link href="/careers/software-engineer" className="hover:text-indigo-600 transition-colors">Software Engineer</Link></li>
-              <li><Link href="/careers/data-scientist" className="hover:text-indigo-600 transition-colors">Data Scientist</Link></li>
               <li><Link href="/careers/ai-prompt-engineer" className="hover:text-indigo-600 transition-colors">AI Prompt Engineer</Link></li>
               <li><Link href="/careers/ui-ux-designer" className="hover:text-indigo-600 transition-colors">UI/UX Designer</Link></li>
+              <li><Link href="/careers/software-engineer" className="hover:text-indigo-600 transition-colors">Software Engineer</Link></li>
+              <li><Link href="/careers/data-scientist" className="hover:text-indigo-600 transition-colors">Data Scientist</Link></li>
             </ul>
           </div>
 
