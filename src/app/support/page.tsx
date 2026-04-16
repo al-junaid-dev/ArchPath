@@ -72,12 +72,12 @@ export default function SupportPage() {
 
               {/* Dynamic QR Code */}
               <div className="bg-white p-4 rounded-xl shadow-sm border border-zinc-200">
-                <Image 
-                  src={qrCodeUrl} 
-                  alt="UPI QR Code" 
-                  width={200} 
-                  height={200}
-                  className="rounded-lg"
+                <img 
+                src={qrCodeUrl} 
+                alt="UPI QR Code" 
+                width={200} 
+                height={200}
+                className="rounded-lg shadow-sm"
                 />
               </div>
 
