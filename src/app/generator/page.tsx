@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Map, ArrowRight, CheckCircle2, Compass, Brain, Sparkles, Lightbulb } from 'lucide-react';
+import { Map, ArrowRight, CheckCircle2, Compass, Brain, Sparkles, Lightbulb, BotMessageSquare } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
@@ -75,6 +75,10 @@ export default function GeneratorPage() {
   const [currentMessage, setCurrentMessage] = useState('');
   const [isChatting, setIsChatting] = useState(false);
 
+  // UX REFS: Auto-scroll & Mobile Jump
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatInputRef = useRef<HTMLInputElement>(null);
+
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -94,6 +98,22 @@ export default function GeneratorPage() {
     }
     loadUserAndProfile();
   }, [router, supabase]);
+
+  // UX FUNCTION: Auto-scroll to bottom of chat
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Trigger scroll whenever messages change or typing indicator toggles
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatMessages, isChatting]);
+
+  // UX FUNCTION: Jump to chat input for mobile users
+  const jumpToChat = () => {
+    chatInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => chatInputRef.current?.focus(), 500); 
+  };
 
   const generatePath = async () => {
     setGenerating(true);
@@ -142,7 +162,6 @@ export default function GeneratorPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          // Strip out the custom 'emotion' tag before sending the history to Groq
           messages: updatedMessages.map(({ role, content }) => ({ role, content })),
           profile: profile,
           roadmap: roadmap 
@@ -174,13 +193,13 @@ export default function GeneratorPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-transparent">
+    <div className="flex flex-col min-h-screen bg-transparent relative">
       <NavBar />
       
       <main className="flex-grow p-4 md:p-8">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-7xl mx-auto space-y-8 relative">
           
-          {/* Header Section - Hides once the roadmap is generated */}
+          {/* Header Section */}
           {!roadmap && (
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/80 backdrop-blur-md p-6 rounded-xl border border-zinc-200 shadow-sm max-w-4xl mx-auto">
               <div>
@@ -219,16 +238,17 @@ export default function GeneratorPage() {
           {roadmap && !generating && (
             <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
               
-              {/* NEW: Centered Course Title */}
+              {/* Centered Course Title */}
               <div className="text-center pt-4 pb-8 max-w-3xl mx-auto">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-sm font-semibold mb-4">
                   <Compass className="w-4 h-4" />
                   <span>Your Architectural Path</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 capitalize"><p className=" text-sm">f r o m</p>
+                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 capitalize">
+                  <p className="text-sm">f r o m</p>
                   {profile?.field_of_study}
-<p className="text-sm">t o</p>
+                  <p className="text-sm">t o</p>
                 </h2>
               </div>
 
@@ -236,7 +256,7 @@ export default function GeneratorPage() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
                 
                 {/* LEFT COLUMN: The Roadmap */}
-                <div className="lg:col-span-2 space-y-8">
+                <div className="lg:col-span-2 space-y-8 pb-24 lg:pb-0">
                   
                   <div className="text-left space-y-2 mb-8 bg-white/60 p-6 rounded-xl border border-zinc-200/50">
                     <h2 className="text-2xl font-bold text-zinc-900">{roadmap.title}</h2>
@@ -291,7 +311,7 @@ export default function GeneratorPage() {
                     <CardContent className="p-0 flex flex-col flex-grow overflow-hidden">
                       
                       {/* Chat Messages Area */}
-                      <div className="flex-grow overflow-y-auto p-4 space-y-6 bg-zinc-50/50">
+                      <div className="flex-grow overflow-y-auto p-4 space-y-6 bg-zinc-50/50 scroll-smooth">
                         {chatMessages.length === 0 ? (
                           <div className="h-full flex items-center justify-center text-zinc-400 text-sm text-center px-4">
                             Start a conversation about your new roadmap...
@@ -300,7 +320,6 @@ export default function GeneratorPage() {
                           chatMessages.map((msg, index) => (
                             <div key={index} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                               
-                              {/* AI Avatar displays on the left for assistant messages */}
                               {msg.role === 'assistant' && <AiAvatar emotion={msg.emotion} />}
 
                               <div className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm ${
@@ -329,12 +348,16 @@ export default function GeneratorPage() {
                             </div>
                           </div>
                         )}
+                        
+                        {/* THE INVISIBLE AUTOSCROLL TARGET DIV */}
+                        <div ref={messagesEndRef} className="h-px w-full" />
                       </div>
 
                       {/* Chat Input Area */}
                       <div className="p-4 bg-white border-t border-zinc-100">
                         <form onSubmit={sendMessage} className="flex flex-col gap-2">
                           <input
+                            ref={chatInputRef}
                             type="text"
                             value={currentMessage}
                             onChange={(e) => setCurrentMessage(e.target.value)}
@@ -357,6 +380,23 @@ export default function GeneratorPage() {
 
         </div>
       </main>
+
+      {/* MOBILE FLOATING BUTTON (FAB) */}
+      {/* Only renders when a roadmap exists so it doesn't clutter the initial empty state */}
+      {roadmap && (
+        <div className="fixed bottom-6 right-6 z-50 md:hidden">
+          {/* Pulsing ring animation */}
+          <span className="absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-60 animate-ping"></span>
+          {/* Main button */}
+          <Button 
+            onClick={jumpToChat}
+            className="relative rounded-full w-14 h-14 shadow-2xl bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center border-2 border-white/10 transition-transform active:scale-95"
+            aria-label="Jump to AI Chat"
+          >
+            <BotMessageSquare className="w-6 h-6" />
+          </Button>
+        </div>
+      )}
       
       <Footer />
     </div>
