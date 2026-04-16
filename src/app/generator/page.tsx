@@ -75,8 +75,8 @@ export default function GeneratorPage() {
   const [currentMessage, setCurrentMessage] = useState('');
   const [isChatting, setIsChatting] = useState(false);
 
-  // UX REFS: Auto-scroll & Mobile Jump
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  // UX REFS: Auto-scroll container & Mobile Jump
+  const chatScrollRef = useRef<HTMLDivElement>(null);
   const chatInputRef = useRef<HTMLInputElement>(null);
 
   const supabase = createBrowserClient(
@@ -99,9 +99,14 @@ export default function GeneratorPage() {
     loadUserAndProfile();
   }, [router, supabase]);
 
-  // UX FUNCTION: Auto-scroll to bottom of chat
+  // UX FUNCTION: Auto-scroll exclusively inside the chat container
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatScrollRef.current) {
+      chatScrollRef.current.scrollTo({
+        top: chatScrollRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   };
 
   // Trigger scroll whenever messages change or typing indicator toggles
@@ -310,8 +315,8 @@ export default function GeneratorPage() {
                     </CardHeader>
                     <CardContent className="p-0 flex flex-col flex-grow overflow-hidden">
                       
-                      {/* Chat Messages Area */}
-                      <div className="flex-grow overflow-y-auto p-4 space-y-6 bg-zinc-50/50 scroll-smooth">
+                      {/* Chat Messages Area - REF ATTACHED HERE */}
+                      <div ref={chatScrollRef} className="flex-grow overflow-y-auto p-4 space-y-6 bg-zinc-50/50 scroll-smooth">
                         {chatMessages.length === 0 ? (
                           <div className="h-full flex items-center justify-center text-zinc-400 text-sm text-center px-4">
                             Start a conversation about your new roadmap...
@@ -348,9 +353,6 @@ export default function GeneratorPage() {
                             </div>
                           </div>
                         )}
-                        
-                        {/* THE INVISIBLE AUTOSCROLL TARGET DIV */}
-                        <div ref={messagesEndRef} className="h-px w-full" />
                       </div>
 
                       {/* Chat Input Area */}
