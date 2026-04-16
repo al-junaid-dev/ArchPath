@@ -3,7 +3,7 @@
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Compass, LogOut, LayoutDashboard, User, ShieldAlert } from 'lucide-react';
+import { Compass, LogOut, LayoutDashboard, User, ShieldAlert, Heart } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -66,6 +66,10 @@ export default function NavBar() {
           {/* SEO Link: Visible to everyone */}
           <Link href="/careers" className="hidden sm:block text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors mr-2">
             Directory
+          </Link>
+          <Link href="/support" className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-red-600 transition-colors mr-2">
+          <Heart className="w-4 h-4" />
+          Support
           </Link>
 
           {!loading && (
