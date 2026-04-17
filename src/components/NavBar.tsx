@@ -1,5 +1,6 @@
 'use client';
 
+
 import { createBrowserClient } from '@supabase/ssr';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
