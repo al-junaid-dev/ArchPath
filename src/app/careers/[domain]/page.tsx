@@ -4,6 +4,7 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Compass, Sparkles, Map } from 'lucide-react';
+import SmartGenerateButton from '@/components/SmartGenerateButton';
 
 type Props = {
   params: Promise<{ domain: string }>;
@@ -57,15 +58,9 @@ export default async function CareerPage({ params }: Props) {
               Stop reading generic blogs. Generate a personalized, real-time masterplan to become a {formattedDomain} based on your exact academic level.
             </p>
 
-            <div className="pt-4">
-              {/* Appending the current domain to the login URL so the auth flow remembers their intent */}
-<Link href={`/login?next=/careers/${domain}`} className="inline-block">
-  <Button size="lg" className="bg-black text-white hover:bg-zinc-800 rounded-full px-8 h-14 text-base font-semibold shadow-xl hover:shadow-2xl transition-all">
-    <Sparkles className="mr-2 w-5 h-5 text-indigo-400" />
-    Generate Your Masterplan
-  </Button>
-</Link>
-            </div>
+           <div className="pt-4">
+  <SmartGenerateButton domain={domain} formattedDomain={formattedDomain} />
+</div>
           </header>
 
           {/* GENERATIVE ENGINE OPTIMIZATION (GEO) SUMMARY BLOCK */}
